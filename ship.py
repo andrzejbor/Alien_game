@@ -17,6 +17,15 @@ class Ship:
         # New ship appear on screen bottom
         self.rect.midbottom = self.screen_rect.midbottom
 
+        # Option showing ship moving
+        self.moving_right = False
+
+    def update(self):
+        """Update ship position depending on key events"""
+
+        if self.moving_right:
+            self.rect.x += 1
+
     def blitme(self):
         """Display ship in actual position"""
         self.screen.blit(self.image, self.rect)
