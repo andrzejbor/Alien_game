@@ -1,7 +1,7 @@
 import sys
 import pygame
 from settings import Settings
-from  ship import Ship
+from ship import Ship
 
 
 class AlienInvasion:
@@ -23,17 +23,23 @@ class AlienInvasion:
     def run_game(self):
         """Run main loop"""
         while True:
-            """Wait for key or mouse click"""
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            self._check_events()
+            self._update_screen()
 
-            """Refresh screen in every iteration"""
-            self.screen.fill(self.bg_color)
-            self.ship.blitme()
+    def _check_events(self):
+        """Reaction for mouse and keyboard event"""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
 
-            """Display last refresh screen"""
-            pygame.display.flip()
+    def _update_screen(self):
+        """Refresh object on screen and go to new screen"""
+        # Refresh screen in every iteration
+        self.screen.fill(self.bg_color)
+        self.ship.blitme()
+
+        # Display last refresh screen
+        pygame.display.flip()
 
 
 if __name__ == '__main__':
