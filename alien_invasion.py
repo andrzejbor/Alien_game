@@ -86,6 +86,11 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
+        if not self.aliens:
+            # Remove bullets and create new fleet
+            self.bullets.empty()
+            self._create_fleet()
+
     def _create_fleet(self):
         """Create alien fleet"""
         # Create alien and max alien number in row. Distance between alien is alien width
