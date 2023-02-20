@@ -6,6 +6,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from game_stats import GameStats
+from button import Button
 
 
 class AlienInvasion:
@@ -28,6 +29,9 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
 
         self._create_fleet()
+
+        # Create button "Play"
+        self.play_button = Button(self, "Play")
 
         self.bg_color = self.settings.bg_color
 
@@ -191,6 +195,10 @@ class AlienInvasion:
 
         # Draw aliens
         self.aliens.draw(self.screen)
+
+        # Draw play button when game is inactive
+        if not self.stats.game_active:
+            self.play_button.draw_button()
 
         # Display last refresh screen
         pygame.display.flip()
