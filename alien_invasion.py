@@ -45,7 +45,7 @@ class AlienInvasion:
 
             if self.stats.game_active:
                 self.ship.update()
-                self._update_bullets()
+                self._check_bullet_alien_collisions()
                 self._update_alien()
 
             self._update_screen()
@@ -109,7 +109,7 @@ class AlienInvasion:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
-    def _update_bullets(self):
+    def _check_bullet_alien_collisions(self):
         """Update bullets position and remove outside screen bullets"""
         # Update bullets position
         self.bullets.update()
@@ -120,7 +120,8 @@ class AlienInvasion:
 
         # Update score points
         if collisions:
-            self.stats.score += self.settings.alien_points
+            for alien in collisions.values():
+                self.stats.score += self.settings.alien_points * len(alien)
             self.sb.prep_score()
 
         # Remove outside screen bullets
