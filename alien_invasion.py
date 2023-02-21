@@ -123,6 +123,7 @@ class AlienInvasion:
             for alien in collisions.values():
                 self.stats.score += self.settings.alien_points * len(alien)
             self.sb.prep_score()
+            self.sb.check_high_score()
 
         # Remove outside screen bullets
         for bullet in self.bullets.copy():
