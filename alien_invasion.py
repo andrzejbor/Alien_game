@@ -92,6 +92,7 @@ class AlienInvasion:
             self.stats.game_active = True
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
 
             # Remove aliens and bullets
             self.aliens.empty()
@@ -200,6 +201,7 @@ class AlienInvasion:
         if self.stats.ship_left > 0:
             # Decreasing value in ship_left
             self.stats.ship_left -= 1
+            self.sb.prep_ships()
 
             # Remove aliens and bullets content
             self.aliens.empty()
