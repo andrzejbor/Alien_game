@@ -90,6 +90,7 @@ class AlienInvasion:
             self.settings.initialize_dynamic_settings()
             self.stats.reset_stats()
             self.stats.game_active = True
+            self.sb.prep_score()
 
             # Remove aliens and bullets
             self.aliens.empty()
@@ -116,6 +117,11 @@ class AlienInvasion:
         # Check if any bullet hit alien, if yes remove bullet and alien
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
+
+        # Update score points
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
 
         # Remove outside screen bullets
         for bullet in self.bullets.copy():
